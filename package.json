@@ -1,11 +1,22 @@
 {
-  "name": "nest-typescript-starter",
+  "name": "nestjs-graphql-azure-functions",
   "version": "1.0.0",
-  "description": "Nest TypeScript starter repository",
+  "description": "Sample nestjs app with graphql deployed to an azure function app",
+  "author": "Andrew Moss",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agmoss/nestjs-graphql-azure-functions.git"
+  },
+  "keywords": [
+    "nestjs",
+    "graphql",
+    "azure-functions",
+    "serverless"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
@@ -16,9 +27,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "echo 'No e2e tests implemented yet.'"
+    "test:e2e": "echo 'No e2e tests implemented yet.'",
+    "start:azure": "npm run build && func host start"
   },
   "dependencies": {
+    "@azure/functions": "^1.0.3",
+    "@nestjs/azure-func-http": "^0.4.2",
     "@nestjs/common": "6.11.8",
     "@nestjs/core": "6.11.8",
     "@nestjs/graphql": "6.5.5",
