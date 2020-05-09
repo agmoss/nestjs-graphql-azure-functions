@@ -210,7 +210,3 @@ To build and run from the command line use:
 ```bash
 $ npm run build && func azure functionapp publish <APP_NAME>
 ```
-
----
-
-### Live deployment [here](https://nestjs-graphql-azure-functions.azurewebsites.net/api/graphql)
