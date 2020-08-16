@@ -199,14 +199,52 @@ you should get back something like....
 
 > _The battle has been won but the war has just begun_
 
+
+1. Create resource in Azure Portal 
+
+Navigate to your azure account and create a new `Function App`. The `Create Function App` workflow contains five tabs: Basics, Hosting, Monitoring, Tags, and Review + create. Settings in `Basics` and `Hosting` need to be adjusted, the other tabs can be left at their defaults. 
+
+> Basics 
+
+![Basics](https://m0ss.blob.core.windows.net/media/create1.png)
+
+> Hosting 
+
+![Hosting](https://m0ss.blob.core.windows.net/media/create2.png)
+
+
+Upon completing the Basics and Hosting, press `Review + create` to deploy the function app. 
+
+
+2. Deploy your code to the Function App
+
+Once created, head back to your editor and deploy your Nest Graphql App to this newly created Function App. 
+
+```bash
+$ npm run build && func azure functionapp publish <APP_NAME>
+```
+
+This will create an output similar to the following: 
+
+![Deploy](https://m0ss.blob.core.windows.net/media/deploy.png)
+
+**Note**: This step requires `Azure Functions Core Tools v3` for local development and deployment of Azure Functions. Instructions on how to get this on your development machine can be found [here](https://github.com/Azure/azure-functions-core-tools)
+
+3. Use the deployed graphql endpoint
+
+Wait a few minutes for the application to propagate then head to the deployed graphql endpoint: `https://<APP_NAME>.azurewebsites.net/api/graphql`
+
+You should then be treated to the graphql playground. 
+
+![Playground](https://m0ss.blob.core.windows.net/media/playground.png)
+
+
+## Notes on Deployment
+
 Getting the function to run remotely on azure is not clear cut. I have found that the best configuration options are Function app V3 and WEBSITES_NODE_DEFAULT_VERSION set to ~12
 
 Documentation on how to changes these Azure related setting can be found [here](https://docs.microsoft.com/en-us/azure/azure-functions/)
 
 If you are using vscode there is some helpful extensions for deploying function apps. Your can read about that [here](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code?pivots=programming-language-typescript)
 
-To build and run from the command line use:
-
-```bash
-$ npm run build && func azure functionapp publish <APP_NAME>
-```
+Included in this repo is a `template.zip`. This contains the templated deployment parameters from the `Deploying to Azure Functions` section of this article. 
